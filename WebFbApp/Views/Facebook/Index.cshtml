@@ -1,0 +1,94 @@
+﻿@using WebFbApp.Models
+@model FacebookProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Facebook</h2>
+
+<div class="col-md-10">
+    <span>&nbsp;</span>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <a href="@Model.LinkURL" target="_blank">
+            <img class="img-rounded" src="@Model.ImageURL" , alt="Profile Image goes here" />
+        </a>
+    </div>
+    @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="col-md-5">
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @randomly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @randomly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinkURL, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.LinkURL, new { @class = "form-control", @randomly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Locale, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.Locale, new { @class = "form-control", @randomly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.Gender, new { @class = "form-control", @randomly = true })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        @using (Ajax.BeginForm("FB_PostPages", "Facebook",
+                new AjaxOptions
+                {
+                    OnFailure = "handleError(xhr, 'PostPages')",
+                    HttpMethod = "Get",
+                    UpdateTargetId = "PostPages",
+                    LoadingElementId = "divLoadingPostPages",
+                    InsertionMode = InsertionMode.Replace,
+                },
+                new
+                {
+                    id = "Post_Pages_Form"
+                }))
+        {
+            <div id="divLoadingPostPages" style="display:none">
+                <img src="~/images/loader.gif" />
+            </div>
+        }
+        <div id="Post_Pages"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script type="text/javascript">
+        $("#Post_Pages_Form").load("Facebook/FB_PostPages");
+        function handeError(ajaxContext, UpdateTargetId) {
+            if (ajaxContext != null &&
+                ajaxContext.responseText != null) {
+                $("#" + UpdateTargetId).html(ajaxContext.responseText);
+            }
+        }
+    </script>
+}
