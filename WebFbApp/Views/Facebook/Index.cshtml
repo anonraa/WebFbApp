@@ -77,12 +77,36 @@
         <div id="Post_Pages"></div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-3">
+        @using (Ajax.BeginForm("FB_PicturePages", "Facebook",
+                        new AjaxOptions
+                        {
+                            OnFailure = "handleError(xhr, 'PicturePages')",
+                            HttpMethod = "Get",
+                            UpdateTargetId = "PicturePages",
+                            LoadingElementId = "divLoadingPicturePages",
+                            InsertionMode = InsertionMode.Replace,
+                        },
+                        new
+                        {
+                            id = "Picture_Pages_Form"
+                        }))
+        {
+            <div id="divLoadingPicturePages" style="display:none">
+                <img src="~/images/loader.gif" />
+            </div>
+        }
+        <div id="Picture_Pages"></div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryajax")
     <script type="text/javascript">
+        $("#Picture_Pages_Form").load("Facebook/FB_PicturePages");
         $("#Post_Pages_Form").load("Facebook/FB_PostPages");
         function handeError(ajaxContext, UpdateTargetId) {
             if (ajaxContext != null &&

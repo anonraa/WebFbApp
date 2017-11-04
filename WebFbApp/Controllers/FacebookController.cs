@@ -85,5 +85,37 @@ namespace WebFbApp.Controllers
 
             return PartialView(postList);
         }
+
+        public async Task<ActionResult> FB_PicturePages()
+        {
+            var access_token = HttpContext.Items["access_token"].ToString();
+            var appsecret_proof = access_token.GenerateAppSecretProof();
+
+            var facebookClient = new FacebookClient();
+
+            var myInfo = await facebookClient.GetAsync<dynamic>(
+                access_token, "me", "fields=name");
+
+            var pictures = await facebookClient.GetAsync<dynamic>(
+                access_token, $"{myInfo.id}/photos/uploaded", "fields=created_time,album,source");
+
+            var pictureList = new List<FacebookPictureViewModel>();
+
+            foreach(dynamic picture in pictures.data)
+            {
+                var facebookPicture = new FacebookPictureViewModel
+                {
+                    Id = picture.id,
+                    PictureURL = picture.source,
+                    CreatedTime = picture.created_time
+                    // Albums shoud implement :D
+                };
+
+                pictureList.Add(facebookPicture);
+            }
+
+
+            return PartialView(pictureList);
+        }
     }
 }

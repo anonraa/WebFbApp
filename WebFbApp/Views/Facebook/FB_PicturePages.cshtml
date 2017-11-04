@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebFbApp.Models.FacebookPictureViewModel>
+@{
+    ViewBag.Title = "FB_PicturePages";
+}
+
+<h2>FB_PicturePages</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="height:300px; overflow:auto">
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover table-striped table-scrollable">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PictureURL)
+                        </th>
+                    </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedTime)
+                                </td>
+                                <td>
+                                    <a href=@Html.DisplayFor(modelItem => item.PictureURL) target="_blank">@Html.DisplayFor(modelItem => item.PictureURL)</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        @Model.Count() Pictures
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
