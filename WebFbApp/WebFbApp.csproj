@@ -205,8 +205,10 @@
     <Compile Include="Interfaces\IFacebookClient.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FacebookClient.cs" />
+    <Compile Include="Models\FacebookPictureViewModel.cs" />
     <Compile Include="Models\FacebookPostViewModel.cs" />
     <Compile Include="Models\FacebookProfileViewModel.cs" />
+    <Compile Include="Models\FacebookWebhookViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Facebook\loader.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -287,6 +290,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Facebook\Index.cshtml" />
     <Content Include="Views\Facebook\FB_PostPages.cshtml" />
+    <Content Include="Views\Facebook\FB_Webhook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
