@@ -208,7 +208,6 @@
     <Compile Include="Models\FacebookPictureViewModel.cs" />
     <Compile Include="Models\FacebookPostViewModel.cs" />
     <Compile Include="Models\FacebookProfileViewModel.cs" />
-    <Compile Include="Models\FacebookWebhookViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,7 +289,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Facebook\Index.cshtml" />
     <Content Include="Views\Facebook\FB_PostPages.cshtml" />
-    <Content Include="Views\Facebook\FB_Webhook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

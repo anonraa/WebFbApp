@@ -117,17 +117,5 @@ namespace WebFbApp.Controllers
 
             return PartialView(pictureList);
         }
-
-        public async Task<ActionResult> FB_Webhook()
-        {
-            var hub = Request.Params["hub.challenge "].ToString();
-
-            var webhookPage = new FacebookWebhookViewModel
-            {
-                Challenge = hub
-            };
-
-            return View(webhookPage);
-        }
     }
 }
